@@ -220,7 +220,12 @@ sp<IDemo> getDemoServ() {
     sp<IBinder> binder = sm->getService(String16("Demo"));
     // TODO: If the "Demo" service is not running, getService times out and binder == 0.
     ASSERT(binder != 0);
+
+    //dagang: 
+    //  interface_cast is defined in IInterface. 
+    //  It eventually constructs a BpDemo object from the binder argument.
     sp<IDemo> demo = interface_cast<IDemo>(binder);
+    
     ASSERT(demo != 0);
     return demo;
 }
